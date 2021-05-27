@@ -1,15 +1,25 @@
-// Step 1: Import your component
-import * as React from "react";
+import React from "react";
+import { graphql } from "gatsby";
 import Layout from "../components/layout";
 
-// Step 2: Define your component
-const AboutPage = () => {
+export default function About({ data }) {
   return (
-    <Layout pageTitle="About Me">
-      <p>Hi there! I'm about page.</p>
+    <Layout>
+      <h1>About {data.site.siteMetadata.title}</h1>
+      <p>
+        We're the only site running on your computer dedicated to showing the
+        best photos and videos of pandas eating lots of food.
+      </p>
     </Layout>
   );
-};
+}
 
-// Step 3: Export your component
-export default AboutPage;
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
